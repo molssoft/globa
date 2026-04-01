@@ -1,0 +1,1 @@
+ðis ir tests vai latvieðu burti strâdâs

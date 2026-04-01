@@ -1,0 +1,257 @@
+<?
+
+session_start();
+$_SESSION['path_to_files'] = 'online2/';
+require_once("online2/m_init.php");
+
+
+
+$db = New Db();
+
+
+$function = $_GET['f'];
+if (!isset($_GET['f'])) $function = 'meklet';
+if ($function == 'meklet') Meklet();
+if ($function == 'parakstit') Parakstit();
+
+function Parakstit(){
+	global $db;
+	require_once("online2/m_pieteikums.php");
+	require_once("online2/m_dalibn.php");
+	require_once("online2/m_marsruts.php");
+	require_once("online2/m_grupa.php");
+	$piet = new Pieteikums();
+	$dalibn = new Dalibn();
+	$marsruts = new Marsruts();
+	$gr = new Grupa();
+	$_POST['submit'] = 1;
+	$_POST['ligums_id'] = 1;
+	$_POST['parakstits'] = 0;
+
+	 
+	if (isset($_GET['ligums_id']) && isset($_GET['did'])){
+		$lid = (int)$_GET['ligums_id'];
+		//$parakstits = (int)$_POST['parakstits'];
+		$qry = "SELECT isnull(parakstits,0) as parakstits FROM ligumi WHERE id=? AND deleted=0";
+		$params = array($lid);
+		//echo $qry."<br>";
+		//var_dump($params);
+
+		$result = $db->Query($qry,$params);
+		while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
+			//$lid = $row['id'];
+			$parakstits = $row['parakstits'];
+			$jaunais_status = (int)!($parakstits);
+			$qry = "UPDATE ligumi SET parakstits=? WHERE id=?";
+			$params = array($jaunais_status,$lid);
+			//echo $qry."<br>";
+			//var_dump($params);
+			$db->Query($qry,$params);
+			//atrodam pieteikumus, kuros ir ðis lîgums
+			$qry = "SELECT * FROm pieteikums WHERE deleted=0 AND ligums_id=?";
+			$params = array($lid);
+			//echo $qry."<br>";
+			//var_dump($params);
+				$res = $db->Query($qry,$params);
+				if ($res){
+					while( $row1 = sqlsrv_fetch_array( $res, SQLSRV_FETCH_ASSOC) ) {
+						//$db->LogAction("pieteikums",
+					}
+				}
+		}
+		$did = (int)$_GET['did'];
+		header('Location: dalibn.asp?i='.$did);
+		
+	}
+}
+//meklçðana pçc lîguma
+function Meklet(){
+	global $db;
+	$qry = '';
+	//var_dump($_SESSION);
+	if (isset($_SESSION['search'])){
+		if (isset($_GET['pg']))
+			$_POST = $_SESSION['search'];
+		unset($_SESSION['search']);
+	}
+	
+
+	if (isset($_POST['search'])){
+		$_SESSION['search'] = $_POST;
+		//lîguma datums no 
+		if (strlen($_POST['lig_datums_no'])>0){
+			if (!$db->CheckDateFormat($_POST['lig_datums_no'])){
+				$error['lig_datums_no'] = 'Datumam jâbût formâ dd.mm.YYYY';
+			}
+			else{
+				$db1 = $db->EscapeValues($_POST,'lig_datums_no');
+				$qry .= " AND accepted_date>='".date("Y-m-d",strtotime($db1['lig_datums_no']))."' ";
+			}
+		}
+		
+		//lîguma datums lîdz 
+		if (strlen($_POST['lig_datums_lidz'])>0){
+			if (!$db->CheckDateFormat($_POST['lig_datums_lidz'])){
+				$error['lig_datums_lidz'] = 'Datumam jâbût formâ dd.mm.YYYY';
+			}
+			else{
+				$db1 = $db->EscapeValues($_POST,'lig_datums_lidz');
+				$qry .= " AND accepted_date<='".date("Y-m-d",strtotime("+1 day",strtotime($db1['lig_datums_lidz'])))."' ";
+			}
+		}
+		//pieteikuma datums no
+		if (strlen($_POST['datums_no'])>0){
+			if (!$db->CheckDateFormat($_POST['datums_no'])){
+				$error['datums_no'] = 'Datumam jâbût formâ dd.mm.YYYY';
+			}
+			else{
+				$db1 = $db->EscapeValues($_POST,'datums_no');
+				$where_dat_no = "Datums >='".date("Y-m-d",strtotime($db1['datums_no']))."'";
+				$where_ts_no = "time_stamp >= '".date("Y-m-d",strtotime($db1['datums_no']))."'";
+				
+			}
+		}
+		else{
+			$where_dat_no = "1=1";
+			$where_ts_no = "1=1";
+		}
+		//pieteikuma datums lîdz
+		if (strlen($_POST['datums_lidz'])>0){
+			if (!$db->CheckDateFormat($_POST['datums_lidz'])){
+				$error['datums_lidz'] = 'Datumam jâbût formâ dd.mm.YYYY';
+			}
+			else{
+				$db1 = $db->EscapeValues($_POST,'datums_lidz');
+				$where_dat_lidz = "Datums<'".date("Y-m-d",strtotime("+1 day",strtotime($db1['datums_lidz'])))."'";
+				$where_ts_lidz = "time_stamp<'".date("Y-m-d",strtotime("+1 day",strtotime($db1['datums_lidz'])))."'";
+				
+				
+			}
+		}
+		else{
+			$where_dat_lidz = "1=1";
+			$where_ts_lidz = "1=1";
+		}
+		$where_piet_dat = " ( (".$where_dat_no." AND ".$where_dat_lidz.") OR (". $where_ts_no." AND ".$where_ts_lidz.") )";
+		//ceïojuma datums no 
+		if (strlen($_POST['cel_datums_no'])>0){
+			if (!$db->CheckDateFormat($_POST['cel_datums_no'])){
+				$error['cel_datums_no'] = 'Datumam jâbût formâ dd.mm.YYYY';
+			}
+			else{
+				$db1 = $db->EscapeValues($_POST,'cel_datums_no');
+				$where_cel_dat_no = "gid IN (SELECT id FROM grupa WHERE sakuma_dat>='".date("Y-m-d",strtotime($db1['cel_datums_no']))."') ";
+				
+				
+			}
+		}
+		else $where_cel_dat_no = "1=1";
+		
+		//ceïojuma datums lîdz
+		if (strlen($_POST['cel_datums_lidz'])>0){
+			if (!$db->CheckDateFormat($_POST['cel_datums_lidz'])){
+				$error['cel_datums_lidz'] = 'Datumam jâbût formâ dd.mm.YYYY';
+			}
+			else{
+				$db1 = $db->EscapeValues($_POST,'cel_datums_lidz');
+				$where_cel_dat_lidz = "gid IN (SELECT id FROM grupa WHERE sakuma_dat<='".date("Y-m-d",strtotime($db1['cel_datums_lidz']))."') ";
+				
+				
+			}
+		}
+		else $where_cel_dat_lidz = "1=1";
+		//grupas kods
+		if (strlen($_POST['gr_kods'])>0){
+			$db1 = $db->EscapeValues($_POST,'gr_kods');
+			$where_grupas_kods = "gid IN (SELECT id from grupa WHERE kods like '%".$db1['gr_kods']."%') ";
+		}
+		else 	$where_grupas_kods = "1=1";
+		//online rez
+		if (strlen($_POST['rez_id'])>0){
+			$db1 = $db->EscapeValues($_POST,'rez_id');
+			$where_rez_id = "isnull(online_rez,0) =  ".$db1['rez_id'];
+		}
+		else 	$where_rez_id = "1=1";
+		//pieteikuma id
+		if (strlen($_POST['pid'])>0){
+			$db1 = $db->EscapeValues($_POST,'pid');
+			$where_pid = "id = ".$db1['pid'];
+		}
+		else 	$where_pid = "1=1";
+		//lîguma id
+		if (strlen($_POST['lid'])>0){
+			$db1 = $db->EscapeValues($_POST,'lid');
+			$where_lid = "l.id = ".$db1['lid'];
+		}
+		else 	$where_lid = "1=1";
+		if (count($error) > 0) {
+			// kïûda		
+			// râdam vecâs vçrtîbas un kïûdas paziòojumu
+			
+			$data['errors'] = $error;
+		}
+		else{
+			/*$qry = "SELECT DISTINCT p.online_rez,l.id as lid,g.id as gid,g.kods,g.sakuma_dat,g.beigu_dat,m.v 
+			FROM ligumi l, pieteikums p,grupa g, marsruts m 
+			WHERE p.ligums_id is not null			
+			AND g.id=p.gid 
+			AND l.id=p.ligums_id 
+			AND m.id=g.mID
+			AND p.deleted=0 ".$qry." ";*/
+			$where = " l.id  IN (SELECT ligums_id FROM pieteikums  where deleted=0 AND l.deleted=0 AND 	($where_piet_dat) AND($where_cel_dat_no) AND ($where_cel_dat_lidz) AND ($where_grupas_kods) AND ($where_rez_id) AND ($where_pid))			
+		 AND ($where_lid) ".$qry." ";
+			
+		}
+			
+		$data['values'] = $_POST;
+
+	}
+	
+	if (isset($_GET['ligums_id'])){
+		$id = (int)$_GET['ligums_id'];
+		$where = " l.id = $id";
+		$data['values']['lid'] = $id;
+	}
+	else{
+		$data['values']['datums_lidz'] = date("d.m.Y");
+		$data['values']['lig_datums_lidz'] = date("d.m.Y");
+	}
+	
+	$currPage = ($_GET["pg"])?$_GET["pg"]:1;
+	$limit=30;
+	$data['results'] = GetResults($currPage,$limit,$where);
+	require_once($_SESSION['path_to_files']."l_pagination.php");
+	$pagination = new Pagination($data['results']['rowcount'] , $limit, $currPage);
+
+	include_once("v_ligumi.php");
+}
+
+function GetResults($currPage,$limit,$where){
+	global $db;
+	
+	$offset =($currPage-1)*$limit; 
+
+	$select = "l.id as lid,accepted_date ";
+	$tables = "ligumi l ";
+	$order = " l.id ";	
+	
+	$query = "SELECT $select FROM $tables WHERE $where";
+	$data = array();
+	$data['rowcount'] = $db->GetQryCount($query);
+	$data['first_row'] = intval($offset)+1;
+
+	$data['last_row'] = intval($offset+$limit);
+	if ($data['rowcount'] < $data['last_row'])
+		$data['last_row'] = $data['rowcount'];
+	//var_dump($rowcount);
+	//echo "<<<<< <br><br>";
+	$qry = $db->offset($offset, $limit, $select, $tables, $order, $where);
+	//echo $qry."<br><br>";
+	require_once($_SESSION['path_to_files']."m_ligumi.php");
+	$ligumi = new Ligumi();
+	$data['ligumi'] = $ligumi->GetWhere($qry);
+		
+	return $data;
+}
+	
+?>

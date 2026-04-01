@@ -1,0 +1,3 @@
+<body onload="window.location.href=<%=Request.QueryString("url")%>">
+Notiek lapas pârlâde ...
+</body>

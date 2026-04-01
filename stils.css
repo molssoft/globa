@@ -1,0 +1,117 @@
+BODY
+{
+    BACKGROUND-COLOR: #ffffff;
+    COLOR: #000000;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: normal;
+    TEXT-DECORATION: none
+}
+TD
+{
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: normal;
+    TEXT-DECORATION: none
+}
+A:link
+{
+    COLOR: #0099cc;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+A:visited
+{
+    COLOR: #0099cc;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: none
+}
+A:hover
+{
+    COLOR: #800000;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold;
+    TEXT-DECORATION: underline
+}
+HTML
+{
+}
+.mazsl A:link
+{
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Arial, sans-serif;
+    FONT-SIZE: 10px;
+    FONT-WEIGHT: normal;
+    TEXT-DECORATION: none
+}
+.mazsl A:visited
+{
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Arial, sans-serif;
+    FONT-SIZE: 10px;
+    FONT-WEIGHT: normal;
+    TEXT-DECORATION: none
+}
+.mazsl A:hover
+{
+    COLOR: #0f0f0f;
+    FONT-FAMILY: Verdana, Arial, sans-serif;
+    FONT-SIZE: 10px;
+    FONT-WEIGHT: normal;
+    TEXT-DECORATION: none
+}
+.cena
+{
+    COLOR: #ff0000;
+    FONT-SIZE: 10px
+}
+.cena1
+{
+    COLOR: #ff0000;
+    FONT-SIZE: 14px;
+    FONT-WEIGHT: bold
+}
+.mazi
+{
+    FONT-FAMILY: Verdana, Arial, sans-serif;
+    FONT-SIZE: 10px;
+    FONT-WEIGHT: normal;
+    TEXT-DECORATION: none
+}
+.lmazi
+{
+    FONT-SIZE: 10px
+}
+.marsr
+{
+    FONT-SIZE: 12px
+}
+.skaidr
+{
+    FONT-SIZE: 12px;
+    FONT-STYLE: italic;
+    FONT-WEIGHT: bold
+}
+.lielais
+{
+    COLOR: #0099ff;
+    FONT-SIZE: 18px;
+    FONT-WEIGHT: bold
+}
+.nosaukums
+{
+    COLOR: #6699ff;
+    FONT-SIZE: 12px;
+    FONT-STYLE: italic;
+    FONT-WEIGHT: bold
+}
+.pm
+{
+    COLOR: #000080;
+    FONT-SIZE: 10px;
+    fonf-family: Arial, sans-serif	FONT-STYLE: italic
+}

@@ -1,0 +1,37 @@
+.vscode/
+_vti_cnf/
+_vti_pvt/
+attachments/
+catalog.wci/
+cgi-bin_/
+DELETE THIS 2123983/
+editlive/
+FTLibrary/
+php/
+php8/
+portal/
+public/
+tarif/
+uploads/
+util/
+vendor/
+admin/_vti_cnf/
+online2/backup_34lk2j34/
+online2/bank/citadele/
+online2/bank/copies/
+online2/bank/dnbnord/
+online2/bank/log/
+online2/bank/merchant/
+online2/bank/seb/
+online2/bank/swedbank/
+online2/bank/vendor/
+online2/bootstrap-select-1.10.0/
+online2/db_queries/
+online2/files/dk_for_preview/
+online2/tmp/*
+!online2/tmp/
+online2/tmp_pdf/*
+!online2/tmp_pdf/
+online2/to be deleted/
+online2/VECI_NEIZMANTOTI/
+online2/vendor/

@@ -1,0 +1,18 @@
+﻿> SINGLE - piedāvājam visiem.
+> TWIN - Ja puse aizņemta : tās pašas rezervācijas ietvaros var jebkuru dzimuma cilvēku ielikt;
+							dažādu rezervāciju ietvaros - tā paša dzimuma cilvēku tikai.
+		Pilnībā brīvos piedāvā visiem.
+		
+> DOUBLE - nepiedāvā rezervācijām, kurās ir viens cilvēks un tādām, kurās visi ir viena dzimuma cilvēki vai visi nepilngadīgi.
+Var ielikt tikai dažādu dzimumu cilvēkus, kuriem ir vismaz 18 gadi. 
+Vienas rezervācijas ietvaros jāizpilda pilnībā (nedrīkst atstāt pustukšu).
+		
+> Visi numuriņi ar 3 un vairāk vietām - piedāvā tikai rezervācijām, kurās ir 3 un vairāk cilvēku. 
+Šie numuriņi vienas rezervācijas ietvaros jāaizņem pilnībā. 
+Ja numuriņš ir ar kopīgu gultu, tad gultā var ielikt tikai dažādu dzimumu cilvēkus, kuriem ir vismaz 18 gadi.
+Bērnu vietas (ja nosakumā ir + zīme, tad aiz tās seko bērnu vietu skaits) piedāvā tikai bērniem (bērni skaitās līdz 16 gadiem(ieskaitot). 
+
+> Papildus nosacījumi
+- Ja rezervācijā ir viens cilvēks un ir pieejams pilnībā brīvs TWINs un pusaizņemts TWINs (ar tā paša dzimuma cilvēku), tad pilnībā brīvo TWINu nemaz nepiedāvā. 
+- Ja ir pusaizņemts numuriņš un rezervācijā palicis tikai 1 dalībnieks nelielikts, tad nerāda tādu pašu tukšu numuriņu.
+		

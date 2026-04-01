@@ -1,0 +1,97 @@
+<!-- #include file = "../conn.asp" -->
+<!-- #include file = "../procs.asp" -->
+
+<%
+dim conn
+openconn
+
+id = Request.form("id")
+if Request.form("parent") <> "NULL" then
+ parent = "'"+Request.form("parent")+"'"
+else
+ parent = "NULL"
+end if
+
+active = Request.form("active")
+if active="on" then
+ active = "1"
+else
+ active = "0"
+end if
+
+active_start = InputSQLDate(Request.Form("active_start"))
+active_end = InputSQLDate(Request.Form("active_end"))
+type_id = Request.form("type_id")
+ievads = SQLText(Request.form("ievads"))
+
+For I = 1 To Request.Form("text").Count 
+  text = text + SQLText(Request.Form("text")(I))
+Next
+
+url = SQLText(Request.form("url"))
+efekts = SQLText(Request.form("efekts"))
+title = SQLText(Request.form("title"))
+small_title = SQLText(Request.form("small_title"))
+liela_bilde = SQLText(Request.Form("liela_bilde"))
+picture = SQLText(Request.Form("picture"))
+datums = InputSQLDate(Request.Form("datums"))
+first_page_start = InputSQLDate(Request.Form("first_page_start"))
+first_page_end = InputSQLDate(Request.Form("first_page_end"))
+banner_start = InputSQLDate(Request.Form("banner_start"))
+banner_end = InputSQLDate(Request.Form("banner_end"))
+charter = Request.Form("charter")
+if charter = "" then charter = "NULL"
+cena_txt = Request.Form("cena_txt")
+if cena_txt = "" then 
+ cena_txt = "NULL"
+else
+ cena_txt = "'"+cena_txt+"'"
+end if
+poga = request.form("poga")
+order_num = request.form("order_num")
+grupa = request.form("grupa")
+if grupa = "" then grupa = "NULL"
+rg = request.form("rg")
+skatit = request.form("skatit")
+
+SET R = conn.execute("select lang from themain where id = '"+id+"'")
+if trim(r("lang")) = "XXX" then
+ ievads = ToUnicode(ievads)
+ text = ToUnicode(text)
+ title = ToUnicode(title)
+ small_title = ToUnicode(small_title)
+ cena_txt = ToUnicode(cena_txt)
+end if
+
+conn.execute "UPDATE theMain set text='"+text+"',active="+active+",active_start="+active_start+",active_end="+active_end+",type_id='"+type_id+"',parent_id="+parent+",title='"+title+"',small_title='"+small_title+"',liela_bilde='"+liela_bilde+"',picture='"+picture+"',ievads='"+ievads+"',efekts='"+efekts+"',first_page_start="+first_page_start+",first_page_end="+first_page_end+",banner_start="+banner_start+",banner_end="+banner_end+",charter="+charter+",cena_txt = "+cena_txt+",order_num="+order_num+",datums="+datums+",grupa="+grupa+",url='"+url+"',rg='"+rg+"',skatit='"+skatit+"' WHERE id = '"+id+"'"
+'response.write "UPDATE theMain set text='"+text+"',active="+active+",active_start="+active_start+",active_end="+active_end+",type_id='"+type_id+"',parent_id="+parent+",title='"+title+"',small_title='"+small_title+"',liela_bilde='"+liela_bilde+"',picture='"+picture+"',ievads='"+ievads+"',efekts='"+efekts+"',first_page_start="+first_page_start+",first_page_end="+first_page_end+",banner_start="+banner_start+",banner_end="+banner_end+",charter="+charter+",cena_txt = "+cena_txt+",order_num="+order_num+",datums="+datums+",grupa="+grupa+",url='"+url+"',rg='"+rg+"',skatit='"+skatit+"' WHERE id = '"+id+"'"
+'response.end
+
+if poga="Pievienot marðrutu" then
+ param = request.form("marsruti_free")
+ if param <> "" then
+  conn.execute("insert into main_marsruti (marsruts,main) values ("+param+",'"+id+"')")
+ end if
+ response.redirect "main_edit.asp?id="+id
+end if
+
+if poga="Atslçgt marðrutu" then
+ param = request.form("marsruti_used")
+ if param <> "" then
+  conn.execute("delete from main_marsruti where marsruts =  "+param+" and main = '"+id+"'")
+ end if
+ response.redirect "main_edit.asp?id="+id
+end if
+
+if Request.form("parent") <> "NULL" then
+ parent = Request.form("parent")
+else
+ parent = ""
+end if
+
+if request.form("back")="1" then
+ Response.Redirect "main.asp?parent="+parent+"&marker="+Request.form("marker")
+else
+ Response.Redirect "main_edit.asp?id="+id+"&parent="+parent
+end if
+%>

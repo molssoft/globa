@@ -1,0 +1,67 @@
+<HTML>
+
+<HEAD>
+<TITLE>Ephox EditLive! 2.5</TITLE>
+<LINK rel="stylesheet" href="misc/ephox.css">
+
+
+<!-- LOAD THE EDITLIVE JAVASCRIPT LIBRARY -->
+<SCRIPT language="JavaScript" src="editlive/editlive2.js"></SCRIPT>
+<SCRIPT language="VBScript" src="editlive/editlive2.vbs"></SCRIPT>
+
+<SCRIPT language="JavaScript1.2">
+<!--	
+//Use this function for retrieving the HTML from EditLive! before submitting it to the server
+function form1_onsubmit() 
+{
+	document.form1.message.value = editLive1.getSource();
+//  	alert(document.form1.message.value);
+	return document.form1.message.value;
+}
+//-->
+</SCRIPT>
+
+</HEAD>
+
+<BODY>
+
+<FORM name="form1" onsubmit="return form1_onsubmit()" action="message_save.htm">
+  <INPUT type="hidden" name="message" value="Ðeit rakstiet epasta saturu">
+
+  <!-- "article_title" is an example of the fields you could store with the HTML from EditLive! -->
+
+<SCRIPT language="JavaScript">
+<!--	
+
+//Important: set the directory where EditLive! download files can be found
+EditLiveGlobal.setDownloadDirectory("editlive/");
+
+//Instatiate the EditLiveObject
+var editLive1 = new EditLive("Plugin1", 600, 300);
+
+//Assign a window onload function
+editLive1.onload = EditLive1_onload;
+
+//Use this function for initalizing and customizing EditLive!
+function EditLive1_onload()
+{
+   editLive1.setEditLiveMode('HTMLString');
+   editLive1.setFTPServer('ftp.ephox.com');
+   editLive1.setFTPServerPort(21);
+   editLive1.setFTPUsername('anon');
+   editLive1.setFTPPassword('anon');
+   editLive1.setWebRoot('http://www.ephox.com/ftp/');
+   editLive1.setImageMode('All');
+   editLive1.setSource(document.forms.form1.message.value);
+}
+
+//-->
+</SCRIPT>
+
+
+  <P><INPUT type="submit"></P>
+</FORM>
+
+</BODY>
+
+</HTML>

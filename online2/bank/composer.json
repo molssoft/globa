@@ -1,0 +1,6 @@
+{
+    "require": {
+        "symfony/serializer": "^7.1",
+        "symfony/property-access": "^7.1"
+    }
+}

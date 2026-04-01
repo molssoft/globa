@@ -1,0 +1,35 @@
+.btn-primary {
+	background-color: green;
+	background-image: none;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #00AA00;
+}
+a {
+	color:orange;
+}
+a:hover {
+	color:orange;
+}
+
+.error {
+	color:red;
+}
+
+.form-control{
+	margin-bottom:10px;
+}
+#gift-card-login{	
+	border-right:2px solid green
+}
+@media (max-width: 768px){
+	#gift-card-login{
+		border-right:none;
+		border-bottom:2px solid green;
+	}
+}
+
+.container{
+	margin-bottom:25px;
+}

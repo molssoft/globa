@@ -1,0 +1,64 @@
+<!-- #include file = "../conn.asp" -->
+<!-- #include file = "procs.asp" -->
+
+<%
+dim conn
+openconn
+
+parent = Request.QueryString("parent")
+set r = conn.execute("select * from theMain where isnull(parent_id,'') = '"+parent+"' order by order_num")
+set rc = conn.execute("select isnull(count(*),0) from theMain where isnull(parent_id,'') = '"+parent+"'")
+set rparent = conn.execute("select * from theMain where id = '"+parent+"'")
+%>
+
+<center>
+<font face=Tahoma>
+<font size=5>Raksti</font><br><br>
+<%top_links%>
+<hr>
+<p align=left>
+
+<table border = 0>
+<% if parent<>"" and not rparent.eof then %>
+ <tr><td width=150><a href=main.asp?parent=<%=rParent("parent_id")%>>...</a></td><td></td><td  width=200></td><td></td></tr>
+ <% 
+else
+ %><tr><td width=150></td><td></td><td width=200></td><td></td></tr><%
+end if 
+
+dim i
+i = 1
+while not r.eof
+ %>
+ <tr>
+ <td>
+  <a href=main.asp?parent=<%=r("id")%>><%=r("id")%></a>
+ </td><td></td>
+ <td>
+  <% if r("active") then  %>
+	<font color=green> <%=r("title")%></font>
+    <% else %>
+	<font color=red> <%=r("title")%></font>
+<% end if %>
+ </td>
+ <td><font face=Wingdings>
+  <a href=main_edit.asp?id=<%=r("id")%>> ? </a>
+  s <a href=main_del.asp?id=<%=r("id")%> onclick="return confirm('Patieðâm dzçst?')">M </a>
+  <% if i<>1 then %>
+  s <a href=main_up.asp?id=<%=r("id")%>> á </a>
+  <% end if %>
+  <% if i<>rc(0) then %>
+   s <a href=main_down.asp?id=<%=r("id")%>> â </a>
+  <% end if %></font>
+ </td></tr><%
+ r.movenext
+ i = i + 1
+wend
+%></table><br><%
+
+if parent<>"" then
+ %><a href=main_new.asp?parent=<%=parent%>>Jauns</a><%
+else
+ %><a href=main_new.asp>Jauns</a><%
+end if 
+%>

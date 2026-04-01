@@ -1,0 +1,2 @@
+<?
+echo realpath ('test.php'); ?> 

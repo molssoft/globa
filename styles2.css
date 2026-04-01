@@ -1,0 +1,88 @@
+BODY
+{
+    FONT-FAMILY: Arial
+}
+
+TH
+{
+    BACKGROUND-COLOR: #AAFFAA;
+	padding: 4px 4px;
+}
+
+table {
+    border-collapse: collapse;
+    border: none;
+	padding: 4px 4px;
+}
+
+A.redlink
+{
+    COLOR: red;
+    TEXT-DECORATION: underline
+}
+
+A.redlink:hover
+{
+    COLOR: blue;
+    TEXT-DECORATION: none
+}
+
+a img{
+	border:2px solid;
+}
+
+/* ============================================
+   General reusable button styles
+   ============================================ */
+
+/* Base button look that can be reused everywhere */
+.btn {
+    padding: 6px 15px;
+    border: 0px;
+    background-color: green; /* default button background */
+    color: white;            /* default button text color */
+    cursor: pointer;
+	border-radius: 6px;
+	font-size: 14px;
+}
+
+/* Slightly more visible primary action button */
+.btn-primary {
+    background-color: #green; /* same tone as filter labels */
+}
+
+/* ============================================
+   General reusable table styles
+   ============================================ */
+
+/* Generic header cell style (can be used on TH or TD) */
+.table-header {
+    background-color: white; /* same as global TH style */
+    font-weight: bold;
+}
+
+/* Generic data cell style */
+.table-cell {
+    background-color: #white;
+}
+
+/* Gift card search form specific cells */
+.td-filter-label {
+    background-color: white;
+    font-weight: bold;
+	font-size: 14px;
+}
+
+.td-filter-input {
+    background-color: #white;
+}
+
+/* Gift card result table: align all cells to top */
+#atrasts td {
+    vertical-align: top;
+}
+
+/* Rows where the gift card is displayed but has no payments */
+.row-no-payments {
+    color: red;
+}

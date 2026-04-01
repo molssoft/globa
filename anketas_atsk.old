@@ -1,0 +1,60 @@
+<!-- #include file = "procs.inc" -->
+<!-- #include file = "dbprocs.inc" -->
+<%
+DocStart "Anketu atskaite","y1.jpg"
+dim conn
+OpenConn
+headlinks
+
+dat_no = Request.Form("dat_no")
+dat_lidz = Request.Form("dat_lidz")
+%>
+
+<center><b><font face=tahoma>
+<br>Anketu atskaite<br><br></b>
+
+<%
+'set r = conn.execute("select * from anketas where gid = "+gid+" order by vards")
+ %>
+ <form name=forma method=POST>
+ <table border=0 cellpadding=3>
+ <tr bgcolor=lightgreen>
+  <td>Periods</td>
+  <td><input type=text size=10 name=dat_no value=<%=dat_no%>> - <input type=text size=10 name=dat_lidz value=<%=dat_lidz%>></td>
+ </tr>
+ </table>
+ <input type=hidden name=subm value=1>
+ <input type=submit name=poga value="Râdît atskaiti">
+ </form>
+
+<% if Request.Form("subm") = "1" then %>
+ <table>
+  <tr>
+   <th>Vadîtâjs</th>
+   <th>Anketas</th>
+   <th>Atzîme<br>vadîtâjam</th>
+  </tr>
+  <%
+   set rv = conn.execute ("select * from grupu_vaditaji where idnum in (select vaditajs from grupa where id in (select gid from anketas)) or idnum in (select vaditajs2 from grupa where id in (select gid from anketas)) order by uzvards2,vards2 ")
+   while not rv.eof
+    query = "select count(*) as c,avg(atz_vaditajs) as vaditajs from anketas where gid in (select id from grupa where (vaditajs = "+cstr(rv("idnum"))+" or vaditajs2 = "+cstr(rv("idnum"))+")"
+    if dat_no <> "" then
+    	query = query + " AND sakuma_dat >= '"+SQLDate(FormatedDate(dat_no,"dmy")) + "' "
+    end if
+    if dat_lidz <> "" then
+    	query = query + " AND sakuma_dat < '"+SQLDate(1+FormatedDate(dat_lidz,"dmy")) + "' "
+    end if
+    query = query + ")"
+    set rstat = conn.execute(query)
+    %>
+     <tr bgcolor=lightgreen>
+      <td><%=decode(rv("uzvards2"))+" "+decode(rv("vards2"))%></td>
+      <td><%=rstat("c")%></td>
+      <td><%=round(rstat("vaditajs")*10)/10%></td>
+     </tr>
+    <%
+    rv.movenext
+   wend
+  %>
+ </table>
+<% end if %>

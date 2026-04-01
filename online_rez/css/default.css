@@ -1,0 +1,65 @@
+/*default css file*/
+
+html{width:99%;height:99%;}
+body{width:99%;height:99%;text-align:center;background-color:#BEC8A0;}
+body {font-family: Tahoma,Arial,Verdana; font-size:12px;line-height: 1.2;}
+
+img {border:0px;}
+a{font-family:Tahoma,Arial,Verdana;font-size:14px;font-weight:bold;color:#46321E;text-decoration:none;}
+a:link{font-family:Tahoma,Arial,Verdana;font-size:14px;font-weight:bold;color:#46321E;text-decoration:none;}
+a:hover{color:#13993F;font-family:Tahoma,Arial,Verdana;font-size:14px;font-weight:bold;text-decoration:none;}
+a:visited{text-decoration: none;}
+a:active{text-decoration: none;}
+
+body,p,li,input,textarea {font-size:14px;color:#46321E;}
+td,th {font-family:Tahoma,Arial,Verdana;font-size:14px;color:#46321E;text-decoration:none;}
+
+/* Global styles 
+td.tdp{BACKGROUND-COLOR: #fffcec;}
+td.tdn{BACKGROUND-COLOR: #fffefb;}
+td.tdv1{COLOR: #0b352d;BACKGROUND-COLOR: #fff3b3;}
+td.tdv2{COLOR: #0b352d;BACKGROUND-COLOR: #ffe13c;}
+*/
+
+div{border: 0px black solid}
+table{border: 1px black solid;background-color:#dee0d7;} /*BACKGROUND-COLOR:#CDD0C6; */
+table tr td{border: 1px black solid;COLOR: #0b352d;background-color:#EFF0E8;}
+
+
+#main_area{width:99%;height:99%;text-align:center;}
+#main_area_center{width:1000px;height:650px;text-align:center;margin:auto;}
+
+/*general classes*/
+.form_table{margin:auto;margin-top:10px;width:100%;border: 1px black solid;}
+
+.form_table tr td.left{text-align:right;width:50%;}
+.form_table tr td.error{text-align:right;width:50%;color:red}
+.form_table tr td.right{text-align:left;width:50%;}
+.form_table tr td.right span{margin-left:20px;}
+.form_table tr td.center{text-align:center;}
+
+
+#impro_header{height:40px;margin:auto;margin-top:30px;font-size:18px;}
+
+/*default.asp*/
+#default_h1{margin:auto;margin-top:50px;margin-bottom:10px;}
+#default_h2{margin:auto;margin-top:30px;margin-bottom:10px;}
+
+#default_link1{margin:auto;}
+#default_link2{margin:auto;}
+
+/*profils.asp*/
+	#menu{height:20px;margin:auto;margin-top:10px;text-align:center}
+	#menu table{margin:auto;font-size: 12px;}
+	#info_line{height:20px;margin:auto;margin-top:10px;}
+	#profils_data_area{width:100%;height:520px;margin-top:10px;}
+
+/*viesnica.asp*/
+	#numuri_main_area{position:absolute;top:0px;left:0px;width:400px;background-color:#FFFFFF;overflow:auto;visibility:hidden;}
+	.numuri_table{width:350px;}
+	.numuri_table tr.numuri_normal{background-color:#33FF99;}
+	.numuri_table tr.numuri_joined{background-color: #33FFFF;}
+	.numuri_table tr.numuri_others{background-color: red;}
+
+/*rezervacijas*/
+/*.nosaukums{width:200px;}*/
