@@ -68,7 +68,7 @@ if isnew or Request.form("gid")<>"" then
  if Request.Form("gid")<>"" then
   'Pievieno jaunu pieteikumu
 	 set conn2 = server.createobject("ADODB.Connection")
-	 conn2.open "DSN=globa" 
+	 conn2.open GLOBA_CONN_STR
 	 conn2.begintrans
 	 gid = Request.Form("gid")
 	 if gid = "" then gid = "0"

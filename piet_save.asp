@@ -58,7 +58,7 @@ elseif pid=0 and Request.Form("gid") <> 0 and Request.Form("gid") <> 279 and (gi
 	end if
 
  
-	conn2.open "DSN=globa"
+	conn2.open GLOBA_CONN_STR
 	conn2.begintrans
 
 	psql = "SET NOCOUNT ON; insert into pieteikums (gid,izveidoja,did) " + _
