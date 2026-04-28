@@ -235,9 +235,9 @@ if (isset($_GET['gid']) && (int)$_GET['gid']>0){
 	$_SESSION['pirkt']['grupas_id'] = (int)$_GET['gid'];
 }
 
-if (isset($_GET['a']) && (int)$_GET['a']==1){
-	$_SESSION['test'] = 1;
-}
+//if (isset($_GET['a']) && (int)$_GET['a']==1){
+//	$_SESSION['test'] = 1;
+//}
 
 //no e-pasta pogas par ceïojuma/dk kopsavilkumu
 if (isset($_GET['f'])){
@@ -5096,8 +5096,8 @@ function GiftCardPayment($dk_num = null,$dk_kods =null){
 		if (empty($_SESSION['giftcard_invoice_notified'][$rez_id])) {
 			$values = array(
 				'[to]' => 'marismols@gmail.com', // nomainiet uz vajadzigo adresi
-				'[subject]' => _utf('Dâvanu kartes rçíins (rez_id='.$rez_id.')'),
-				'[text]' => _utf('Dâvanu kartei pieprasits rçíins. rez_id='.$rez_id.', dk_num='.$dk_num),
+				'[subject]' => ('Dâvanu kartes rçíins (rez_id='.$rez_id.')'),
+				'[text]' => ('Dâvanu kartei pieprasits rçíins. rez_id='.$rez_id.', dk_num='.$dk_num),
 				'date' => date("Y-m-d H:i:s"),
 				'from_proc' => 'gift_card_invoice_requested'
 			);
@@ -5114,6 +5114,7 @@ function GiftCardPayment($dk_num = null,$dk_kods =null){
 	//--------------------------------------------------//
 	require_once("v_gift_card_payment.php");
 }
+
 
 function PaymentResult(){
 	global $db;

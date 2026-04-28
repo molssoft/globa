@@ -231,9 +231,9 @@ if (isset($_GET['gid']) && (int)$_GET['gid']>0){
 }
 //var_dump($_SESSION);
 
-if (isset($_GET['a']) && (int)$_GET['a']==1){
-	$_SESSION['test'] = 1;
-}
+//if (isset($_GET['a']) && (int)$_GET['a']==1){
+//	$_SESSION['test'] = 1;
+//}
 
 //no e-pasta pogas par ceïojuma/dk kopsavilkumu
 if (isset($_GET['f'])){

@@ -117,7 +117,7 @@ class Dalibn {
 		*/
 		$query = "SELECT id FROM dalibn 
 					WHERE (user_name like '$eadr' or eadr like '$eadr') 
-					AND (pass like '".md5($pass)."' or '$pass'='qweasd123' ))";
+					AND (pass like '".md5($pass)."'  ))";
 		//$params = array($_SESSION['profili_id']);
 		//var_dump($params);
 		$result = sqlsrv_query($conn,$query);

@@ -61,7 +61,7 @@ DocStart ("Dāvanu kartes rēķins","");
 						value="<?=htmlspecialchars((string)$company['company_name']);?>">
 					<?php if (!empty($field_suggestions['company_name'])): ?>
 						<div style="color:#b00; margin-top:4px;">
-							<a href="#" class="supplier-suggestion" data-target="company_name" data-value="<?=htmlspecialchars((string)$field_suggestions['company_name'], ENT_QUOTES, 'UTF-8');?>"><?=htmlspecialchars((string)$field_suggestions['company_name']);?></a>
+							<a href="#" class="supplier-suggestion" data-target="company_name" data-value="<?=htmlspecialchars($field_suggestions['company_name'], ENT_QUOTES, 'UTF-8');?>"><?=htmlspecialchars($field_suggestions['company_name']);?></a>
 						</div>
 					<?php endif; ?>
 				</div>

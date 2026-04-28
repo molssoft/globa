@@ -302,7 +302,7 @@ end if
 		<td align=right><font size=2><strong>Klients:</strong></td>
 			<td align=left>
 			  <input type=hidden name=klients value=<%=rGrupa("pasutitajs")%>>
-			  <input type=button value=Meklï¿½t onclick="window.open('dalibn_izvele.asp?return_id=forma.klients&return_name=klients')" id=button1 name=button1>
+			  <input type=button value=Meklçt onclick="window.open('dalibn_izvele.asp?return_id=forma.klients&return_name=klients')" id=button1 name=button1>
 			  <%set rKli = conn.execute("select vards, uzvards from dalibn where id = '" & rGrupa("pasutitajs") & "'")%>
 			  <div id=klients><%
 			  If rKli.eof then 

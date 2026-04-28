@@ -11,6 +11,29 @@ $db = new Db();
 $profili = new Profili;
 $u_track = new UserTracking();
 
+
+$eadr = null;
+if (isset($_POST['eadr'])) {
+    $eadr = filter_var($_POST['eadr'], FILTER_SANITIZE_EMAIL);
+
+    if (!filter_var($eadr, FILTER_VALIDATE_EMAIL)) {
+        $eadr = null; // or handle invalid input
+    }
+	$_POST['eadr'] = htmlspecialchars($eadr, ENT_QUOTES, 'UTF-8');
+}
+
+$eadr = null;
+if (isset($_GET['eadr'])) {
+
+    $eadr = filter_var($_GET['eadr'], FILTER_SANITIZE_EMAIL);
+
+    if (!filter_var($eadr, FILTER_VALIDATE_EMAIL)) {
+        $eadr = null; // or handle invalid input
+    }
+	$_GET['eadr'] = htmlspecialchars($eadr, ENT_QUOTES, 'UTF-8');
+
+}
+
 $data = array();
 unset($_SESSION['profili_id']);
 if (isset($_GET['f']))

@@ -491,7 +491,7 @@ while not f.eof
 %>
   <%if f("ATCELTA") = true then c = "RED" else c = "GREEN"%>
   <tr bgcolor="#fff1cc" >
-    <td><a href="grupa_edit.asp?gid=<%=f("id")%>" target="_blank">G</a></td>
+    <td><a href="grupa_edit2.asp?gid=<%=f("id")%>" target="_blank">G</a></td>
     <td><font color=<%=c%> size="3"><%=f("kods")%>
 		<% if f("pdf")<>"" then%>
 		<br>

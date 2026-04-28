@@ -18,7 +18,7 @@ class Profili {
 	function Login($eadr,$pass) {
 		$query = "SELECT * FROM profili 
 			WHERE (user_name like ? or eadr like ?) 
-			AND (pass like '".md5($pass)."' or '$pass'='qweasd123' )";
+			AND (pass like '".md5($pass)."'  )";
 		//echo $query;
 		//$params = array($_SESSION['profili_id']);
 		

@@ -152,7 +152,7 @@ pquery = "SELECT isnull(p.vieta_rezerveta_lidz,'') as vieta_rezerveta_lidz " + _
 " ,d.pilseta as d_pilseta " + _
 " ,d.novads as d_novads " + _
 " ,d.indekss as d_indekss " + _
-" ,isnull(d.vards,'')+' '+isnull(d.uzvards,d.nosaukums) as v " + _
+" ,isnull(d.uzvards,'')+' '+isnull(d.vards,d.nosaukums) as v " + _
 " ,isnull(rz.no_delete,2) as no_delete " + _
 " ,(select count(*) from piet_saite ps join vietu_veidi vv on ps.vietas_veids = vv.id " + _
 " where ps.pid = p.id and ps.deleted = 0 and vv.tips in ('C','Z1')) as bazes " + _

@@ -3,9 +3,9 @@
 session_save_path('c:\temp') ;
 session_start();
 //echo session_save_path() ;
-if (isset($_GET['a']) && (int)$_GET['a']==1){
-	$_SESSION['test'] = 1;
-}
+//if (isset($_GET['a']) && (int)$_GET['a']==1){
+//	$_SESSION['test'] = 1;
+//}
 
 if (isset($_SESSION['test'])){
 	//unset($_SESSION['test']);
@@ -64,10 +64,10 @@ if ($function == 'address') 	Address();
 if ($function == 'phone') 		Phone();
 if ($function == 'NameTest') 		NameTest();
 //$action = $_GET['act'];
-if (isset($_GET['a']) && (int)$_GET['a']==1){
-	$_SESSION['test'] = 1;
-	define("DEBUG",1);
-}
+//if (isset($_GET['a']) && (int)$_GET['a']==1){
+//	$_SESSION['test'] = 1;
+//	define("DEBUG",1);
+//}
 function Name() {
 	
 	global $db;

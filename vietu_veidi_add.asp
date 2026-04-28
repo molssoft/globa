@@ -84,7 +84,8 @@ for kk = 1 to 5
 		 'galvenais inserts
 		 ' "INSERT INTO vietu_veidi (gid,nosaukums,cena,cenaLVL,cenaUSD,cenaEUR,persona,papildv,virsnieks,limenis,limits,limita_grupa,tips,viesnicas_veids,max_vecums,min_vecums) VALUES (" + cstr(gid) + ",'" + nosaukums+"'," + cstr(cena) + "," + cstr(cenaLVL) + "," + cstr(cenaUSD) + ","+cstr(cenaEUR)+"," + persona + "," + papildv + "," + vid + ","+cstr(limenis)+","+limits+",'"+limita_grupa+"','"+tips+"',"+viesnicas_veids+", "+max_vecums+", "+min_vecums+")"
 		 'Response.end
-		 ssql = "INSERT INTO vietu_veidi (gid,nosaukums,cena,cenaLVL,cenaUSD,cenaEUR,persona,papildv,virsnieks,limenis,limits,limita_grupa,tips,viesnicas_veids,max_vecums,min_vecums,ekskursija,carter_berns_num) VALUES (" + cstr(gid) + ",'" + nosaukums+"'," + cstr(cena) + "," + cstr(cenaLVL) + "," + cstr(cenaUSD) + ","+cstr(cenaEUR)+"," + persona + "," + papildv + "," + vid + ","+cstr(limenis)+","+limits+",'"+limita_grupa+"','"+tips+"',"+viesnicas_veids+", "+max_vecums+", "+min_vecums+", "&ekskursija&", "&carter_berns_num&")"
+		 ssql = "INSERT INTO vietu_veidi (gid,nosaukums,cena,cenaLVL,cenaUSD,cenaEUR,persona,papildv,virsnieks,limenis,limits,limita_grupa,tips,viesnicas_veids,max_vecums,min_vecums,ekskursija,carter_berns_num) VALUES (" + _
+		 cstr(gid) + ",'" + sqltext(nosaukums)+"'," + cstr(cena) + "," + cstr(cenaLVL) + "," + cstr(cenaUSD) + ","+cstr(cenaEUR)+"," + persona + "," + papildv + "," + vid + ","+cstr(limenis)+","+limits+",'"+limita_grupa+"','"+tips+"',"+viesnicas_veids+", "+max_vecums+", "+min_vecums+", "&ekskursija&", "&carter_berns_num&")"
 		 'Response.Write ssql
 		 conn.execute ssql
 		end if
